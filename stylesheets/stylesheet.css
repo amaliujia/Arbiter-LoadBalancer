@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #151515 url("../images/bkg.png") 0 0;
+  background: #151515 url("../images/u4.jpg") 0 0;
   color: #eaeaea;
   font: 16px;
   line-height: 1.5;
@@ -58,7 +58,7 @@ header h1 {
 }
 
 header h1:before {
-  content: "./ ";
+  content: " ";
   font-size: 24px;
 }
 
@@ -129,7 +129,7 @@ dt {
   font-weight: bold;
 }
 
-ul li {
+/*ul li {
   list-style: none;
 }
 
@@ -141,7 +141,7 @@ ul li:before {
   margin-left: -37px;
   margin-right: 21px;
   line-height: 16px;
-}
+}*/
 
 blockquote {
   color: #aaa;
