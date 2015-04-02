@@ -41,6 +41,9 @@ Key-value (KV) stores use the associative array as their fundamental data model.
 The challenging part of this project is to correctly balance the request to the existing data copies. This requires us to get the real-time information of whether one database is overloaded or underloaded. Since we will considering the scenario that the locations of each data copies is not constant, which means that we will move certain data copies for load balancing reason. This post new challenge like where to place the data copies and how to adjust our scheduling policy. One of the biggest challenge is to ensure data consistency across different copies. There are already many algorithm which is specialized to handle the consistency problem, but trying to selecting most proper one to fit into our system is still challenging.
  </p>
 
+<p><h4>Resources</h4>
+Our system will based on machines that has linux distribution installed. At the beginning, we could consider creating virtual machines to provide experiment environment. In the last step, we hope we can get access to 4 to 10 qualified machines in school to test scalability and availability of our system. </p> 
+
 <p><h4>Goals</h4>
 The project has four main areas: implement load balancer, implement data movement mechanism, ensure data consistency and data access pattern related benchmark.</br>
 
