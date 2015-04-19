@@ -40,9 +40,11 @@ Firstly, we got permission on usage of LTI’s cluster. This cluster has four no
 The procedure of experiment is, each time, we implement a kind of schedule policy, and run this prolicy with two different trace files on 1, 2 and 4 nodes, respectively. For now Evaluation is based on how many times speedup acquired on numbers of operations per unit time. For instance, if 1 node has 100 op/sec and 4 nodes have 400op/s, we say 4x speedup is acquired. The detail of schedule policy, benckmark, traces will talk about later. </p>
 
 <p><h3>Schedule Policy</h3>
-For now we come up with two policy:
+For now we come up with two policy:<br/><br/>
 
-Naivesharing policy: this policy is really navie. In this policy, DB operation will be only assigned to next DB instance. For instance, first operation assigned to node 1, seconde op assigned to node 2. If Load balancer only has two nodes, third op assigned to node 1.<br> <br> 
+
+
+Naivesharing policy: this policy is really navie. In this policy, DB operation will be only assigned to next DB instance. For instance, first operation assigned to node 1, seconde op assigned to node 2. If Load balancer only has two nodes, third op assigned to node 1.<br/> <br/> 
 
 Equalsharing policy: The purpose of this policy, is to maintain theoretically balanced workload on each node. So for insert operation, it will be assgined to node which has least number of records. For other operations, like query and delete, will be transfered to node who has this record. This is a greedy policy, and require more memory and disk space for load balancer compared to Naivesharing policy, becasue this policy needs to maintain mapping between records and nodes, based on unique key of record. For now, in memory hashtable is used, but in real word, such important index should be saved in disk or ssd, along with log, to keep metadata integrity.
  </p>

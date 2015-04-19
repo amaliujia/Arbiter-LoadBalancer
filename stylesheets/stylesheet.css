@@ -2,7 +2,9 @@ body {
   margin: 0;
   padding: 0;
   background: #151515 url("../images/u4.jpg") 0 0;
+  background: white;
   color: #eaeaea;
+  color: navy;
   font: 16px;
   line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
@@ -38,9 +40,15 @@ li {
 header {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
-  border-bottom: 1px dashed #b5e853;
+  bottom: 1px dashed #b5e853;
   padding: 20px 0;
   margin: 0 0 40px 0;
+}
+
+table, td, th{
+	color: blue;
+	border: dotted;
+	
 }
 
 header h1 {
