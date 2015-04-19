@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>DB-LoadBalancer by amaliujia</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Key-Value DB Load Balancer</h1>
+        <h2>Database, Parallel Computing, Load Balance</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/amaliujia/DB-LoadBalancer/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/amaliujia/DB-LoadBalancer/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/amaliujia/DB-LoadBalancer" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h2>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checkpoint Report</h2>
+
+
+<p><h3>Experiment Design</h3>
+In this phrase, we had a basic design of our experiment. We decided what benchmark we use, what kind of trace files should produce and what kind of machines we can use. 
+
+Firstly, we got permission on usage of LTI’s cluster. This cluster has four nodes. Each node has two, four core Xeon E5345 processor (<a href="http://ark.intel.com/products/28032/Intel-Xeon-Processor-E5345-8M-Cache-2_33-GHz-1333-MHz-FSB?q=E5345">2.33GHz, 8M L2 cache, no hyper-threading</a>), 16GB memory and hard disk(15000RPM). Based on hardware of machines, we decided to use one node as Load-Balancer, in the meantime, every node was installed a distribution of Emeralddb. 
+
+The procedure of experiment is, each time, we implement a kind of schedule policy, and run this prolicy with two different trace files on 1, 2 and 4 nodes, respectively. For now Evaluation is based on how many times speedup acquired on numbers of operations per unit time. For instance, if 1 node has 100 op/sec and 4 nodes have 400op/s, we say 4x speedup is acquired. The detail of schedule policy, benckmark, traces will talk about later. </p>
+
+<p><h3>Schedule Policy</h3>
+For now we come up with two policy:
+
+Naivesharing policy: this policy is really navie. In this policy, DB operation will be only assigned to next DB instance. For instance, first operation assigned to node 1, seconde op assigned to node 2. If Load balancer only has two nodes, third op assigned to node 1.
+
+Equalsharing policy: The purpose of this policy, is to maintain theoretically balanced workload on each node. So for insert operation, it will be assgined to node which has least number of records. For other operations, like query and delete, will be transfered to node who has this record. This is a greedy policy, and require more memory and disk space for load balancer compared to Naivesharing policy, becasue this policy needs to maintain mapping between records and nodes, based on unique key of record. For now, in memory hashtable is used, but in real word, such important index should be saved in disk or ssd, along with log, to keep metadata integrity.
+ </p>
+
+<p><h3>Benchmark</h3>
+The baseline is, performance of trace runs on single node. Expected performance of load balaner is, to gain linear speedup. As said before, speedup is based on comparing numbers of operations per unit time in different cases.</p> 
+
+<p><h3>Trace Files</h3>
+We produce two different kinds of trace.
+
+Single Insert trace: this trace consists of 300000 insert operation with random generated key.
+
+Mixd operations trace: this trace consists of 100000 operation tuples. Each tuple is like (Insert, query, delete), and each tuple share the same key.
+
+
+ </p>
+
+
+
+
+<p><h3>Platform</h3>
+We plan to implement our load balancer using Java under Linux environment. And the database we use is a document,  mongodb like database. The reason we choose this database is <br>
+	<ur>
+		<li> Emerald DB is a pure and lightweight key-value database which makes it easy for us to integrate our own optimization. </li>
+		<li>This database is easy to make copie so we can simulate accessing multiple data copies. </li>
+		<li> Since it is very light-weight and we have gotten permission on code change. It is possible for us to modify this database and provide functionality that is necessary to our load-balancer</li>
+		</ur>
+	 </p>
+
+
+<p/><h3>Schedule</h3>
+
+      <ul>
+        <li><strong>Friday, April 11</strong>: Design at least three scheduling policies</li>
+        <li><strong>Friday, April 18</strong>: Implement those three scheduling polices and write benchmark to get results.</li>
+        <li><strong>Friday, April 25</strong>: Design and implement data mvoement and measure how much the performance improves.</li>
+        <li><strong>Friday, May 2</strong>: Implement consistency model for our database and implement delay write propagation.</li>
+        <li><strong>Friday, May 9</strong>: create writeup based on our project. If time is permitted, add more feature to maximize performance.</li>
+      </ul>
+</p>
+
+
+
+
+      </section>
+    </div>
+
+    
+  </body>

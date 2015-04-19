@@ -29,85 +29,13 @@
     <div class="container">
       <section id="main_content">
         <h2>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proposal</h2>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></
 
-<p><h3>Summary</h3>
-We will create a load balancer for distributed key-value database as back-end. The database nodes will be used in this project is Emerald DB.
-</p>
-<p><h3>Background</h3>
-Key-value (KV) stores use the associative array as their fundamental data model. In this model, data is represented as a collection of key-value pairs, such that each possible key appears at most once in the collection. Key-value database can provide us with many desirable attributes that relational database cannot provide, such as massive write performance, fast key-value access, flexible schema, no single point of failure, etc. Some big companies like Google and Yahoo use key-value database a lot and they often use several copies of one piece of data stored to obtain availability, reliability and parallel accessing. And sometimes for locality reason, they may move some copies from one database to another for locality reason. In this scenario, how to schedule data accessing among all these copies becomes a real-world problem and also the key to improve throughput. </p>
-
-<p><h3>Challenge</h3>
-The challenging part of this project is to correctly balance the request to the existing data copies. This requires us to get the real-time information of whether one database is overloaded or underloaded. Since we will considering the scenario that the locations of each data copies is not constant, which means that we will move certain data copies for load balancing reason. This post new challenge like where to place the data copies and how to adjust our scheduling policy. One of the biggest challenge is to ensure data consistency across different copies. There are already many algorithm which is specialized to handle the consistency problem, but trying to selecting most proper one to fit into our system is still challenging.
- </p>
-
-<p><h3>Resources</h3>
-Our system will based on machines that has linux distribution installed. At the beginning, we could consider creating virtual machines to provide experiment environment. In the last step, we hope we can get access to 4 to 10 qualified machines in school to test scalability and availability of our system. </p> 
-
-<p><h3>Goals</h3>
-The project has four main areas: implement load balancer, implement data movement mechanism, ensure data consistency and data access pattern related benchmark.</br>
-
-
-<ul>
-  <li><strong>Implement load balancer</strong>
-      <ul>
-        <li>Design and implement several scheduling policies</li>
-        <li>Using them under different load cases and find the general, near-optimal one.</li>
-      </ul>
-  </li>
-  <li><strong>Ensure data consistency</strong>
-      <ul>
-      <li>Ensure that we always get a constant view across several data copies.</li>
-      <li>Using some mechanism like delay write propagation when back-end is underloaded to improve performance.</li>
-      </ul>
-  </li>
-  <li><strong>Implement data movement</strong>
-      <ul>
-      <li>Load balancer is the one who issues the movement command so we should properly integrate this functionality into load balancer.</li>
-      </ul>
-  </li>
-  <li><strong>Simulate real world use cases.</strong>
-      <ul>
-      <li>Simulate social network data access pattern.</li>
-      <li>Simulate data access of high frequency transaction.</li>
-      </ul>
-  </li>
-</ul>
-
-
-
- </p>
-
-
-
-
-<p><h3>Platform</h3>
-We plan to implement our load balancer using Java under Linux environment. And the database we use is a document,  mongodb like database. The reason we choose this database is <br>
 	<ur>
-		<li> Emerald DB is a pure and lightweight key-value database which makes it easy for us to integrate our own optimization. </li>
-		<li>This database is easy to make copie so we can simulate accessing multiple data copies. </li>
-		<li> Since it is very light-weight and we have gotten permission on code change. It is possible for us to modify this database and provide functionality that is necessary to our load-balancer</li>
-		</ur>
-	 </p>
+		<li><a href="proposal.html">Proposal</a></li>
+		<li><a href="checkpoint.html">Checkpoint Report</a></li>
 
-
-<p/><h3>Schedule</h3>
-
-      <ul>
-        <li><strong>Friday, April 11</strong>: Design at least three scheduling policies</li>
-        <li><strong>Friday, April 18</strong>: Implement those three scheduling polices and write benchmark to get results.</li>
-        <li><strong>Friday, April 25</strong>: Design and implement data mvoement and measure how much the performance improves.</li>
-        <li><strong>Friday, May 2</strong>: Implement consistency model for our database and implement delay write propagation.</li>
-        <li><strong>Friday, May 9</strong>: create writeup based on our project. If time is permitted, add more feature to maximize performance.</li>
-      </ul>
-</p>
-
-
-
-
-      </section>
-    </div>
-
+	</ur>
     
   </body>
 </html>
