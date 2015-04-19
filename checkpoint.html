@@ -33,9 +33,9 @@
 
 
 <p><h3>Experiment Design</h3>
-In this phrase, we had a basic design of our experiment. We decided what benchmark we use, what kind of trace files should produce and what kind of machines we can use.<br> <br> 
+In this phrase, we had a basic design of our experiment. We decided what benchmark we use, what kind of trace files should produce and what kind of machines we can use.<br/> <br/> 
 
-Firstly, we got permission on usage of LTI’s cluster. This cluster has four nodes. Each node has two, four core Xeon E5345 processor (<a href="http://ark.intel.com/products/28032/Intel-Xeon-Processor-E5345-8M-Cache-2_33-GHz-1333-MHz-FSB?q=E5345">2.33GHz, 8M L2 cache, no hyper-threading</a>), 16GB memory and hard disk(15000RPM). Based on hardware of machines, we decided to use one node as Load-Balancer, in the meantime, every node was installed a distribution of Emeralddb. <br> <br> 
+Firstly, we got permission on usage of LTI’s cluster. This cluster has four nodes. Each node has two, four core Xeon E5345 processor (<a href="http://ark.intel.com/products/28032/Intel-Xeon-Processor-E5345-8M-Cache-2_33-GHz-1333-MHz-FSB?q=E5345">2.33GHz, 8M L2 cache, no hyper-threading</a>), 16GB memory and hard disk(15000RPM). Based on hardware of machines, we decided to use one node as Load-Balancer, in the meantime, every node was installed a distribution of Emeralddb. <br/> <br/> 
 
 The procedure of experiment is, each time, we implement a kind of schedule policy, and run this prolicy with two different trace files on 1, 2 and 4 nodes, respectively. For now Evaluation is based on how many times speedup acquired on numbers of operations per unit time. For instance, if 1 node has 100 op/sec and 4 nodes have 400op/s, we say 4x speedup is acquired. The detail of schedule policy, benckmark, traces will talk about later. </p>
 
@@ -54,11 +54,18 @@ The baseline is, performance of trace runs on single node. Expected performance 
 
 <p><h3>Trace Files</h3>
 We produce two different kinds of trace.
+<ul>
+<li>Single Insert trace: this trace consists of 300000 insert operation with random generated key.</li>
 
-Single Insert trace: this trace consists of 300000 insert operation with random generated key.
+<li>Mixd operations trace:this trace consists of 100000 operation tuples. Each tuple is like (Insert, query, delete), and each tuple share the same key.</li>
+</ul>
 
-Mixd operations trace: this trace consists of 100000 operation tuples. Each tuple is like (Insert, query, delete), and each tuple share the same key.
+ </p>
+ 
+ <p><h3>Issue with current progress</h3>
+Util now, we still cannot produce comparable experiment data, due to various mistakes and underestimate essence of tasks. One mistake we made, was experiment data inconsistency because of wrong experiment design. <br/> <br/> 
 
+The biggest issue now, is we cannot identify what is bottleneck of our load-balancer. Although we cannot provide comparable data, we still can tell 4 nodes is not fast enough compared to 2 nodes. So what is the reason we cannot achieve linear speedup? Such problems still need to be explored in the next two weeks.<br/> <br/> 
 
  </p>
 
