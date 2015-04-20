@@ -69,12 +69,12 @@ We produce two different kinds of trace.
 <Strong>Comparison of two policy</Strong>
 <img src="img4.png"><br/><br/>
 
+</p>
 
 <p><h3>Current observations</h3>
-
+Based on experiment, we can tell that different policy has significant different performance. The main contribution of this is multi-threading. However, for each policy, multi nodes cannot help improve performance than single node. Even worse, in Equalsharing with multi-client policy, performance of multi nodes is worse than sinlge node.
 </p>
 
-</p>
  
  <p><h3>Issue with current progress</h3>
 As said before, multi nodes cannot help improve performance than single node. We guess the reason maybe is multi-threading has queue and logger contention, because each thread has to write something into logger and catch requests from queue. Such contention results in serialization. <br/> <br/> 
