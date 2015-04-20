@@ -42,10 +42,6 @@ The procedure of experiment is, each time, we implement a kind of schedule polic
 <p><h3>Schedule Policy</h3>
 For now we come up with two policy:<br/><br/>
 
-
-
-Naivesharing policy: this policy is really navie. In this policy, DB operation will be only assigned to next DB instance. For instance, first operation assigned to node 1, seconde op assigned to node 2. If Load balancer only has two nodes, third op assigned to node 1.<br/> <br/> 
-
 Equalsharing policy: The purpose of this policy, is to maintain theoretically balanced workload on each node. So for insert operation, it will be assgined to node which has least number of records. For other operations, like query and delete, will be transfered to node who has this record. This is a greedy policy, and require more memory and disk space for load balancer compared to Naivesharing policy, becasue this policy needs to maintain mapping between records and nodes, based on unique key of record. For now, in memory hashtable is used, but in real word, such important index should be saved in disk or ssd, along with log, to keep metadata integrity.<br/> <br/> 
 
 Equalsharing with multi-client policy: This policy is similar to Equalsharing policy, along with multi-client access to one instance of DB. So it tries to utilize multi-threading to improve performance.
@@ -64,8 +60,14 @@ We produce two different kinds of trace.
  </p>
  
 <p><h3>Current progress</h3>
-<Strong>EqualSharing</Strong>
+<Strong>EqualSharing Policy</Strong>
 <img src="img1.png"><br/><br/>
+
+<Strong>EqualSharing with multi-client policy</Strong>
+<img src="img2.png"><br/><br/>
+
+<Strong>Comparison of two policy on single node</Strong>
+<img src="img3.png"><br/><br/>
 
 </p>
  
